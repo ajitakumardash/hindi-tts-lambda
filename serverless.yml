@@ -23,8 +23,9 @@ plugins:
 
 custom:
   pythonRequirements:
-    dockerizePip: true
-    layer: true
+    dockerizePip: false  # Changed to false to avoid needing Docker
+    layer: false         # Optional: set to false for simpler packaging
+    zip: true            # Optional: helps in local builds
 
 package:
   exclude:
