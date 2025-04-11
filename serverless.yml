@@ -1,0 +1,32 @@
+service: hindi-tts-lambda
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+  timeout: 30
+  memorySize: 1024
+
+functions:
+  app:
+    handler: handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: '{proxy+}'
+          method: ANY
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    layer: true
+
+package:
+  exclude:
+    - node_modules/**
+    - .git/**
